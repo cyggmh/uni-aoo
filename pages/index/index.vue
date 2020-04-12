@@ -1,8 +1,9 @@
 <template>
 	<view class="content">
-		<image class="logo" src="/static/logo.png"></image>
+		<!-- <image class="logo" src="/static/logo.png"></image> -->
 		<view class="text-area">
-			<text class="title">{{title}}</text>
+			<!-- <text class="title">{{title}}</text> -->
+			<view v-for="arr in list" :key="arr.id" style="display: block;"><view>{{arr.name}}</view></view>
 		</view>
 	</view>
 </template>
@@ -12,7 +13,8 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello',
+				list:[]
 			}
 		},
 		onLoad() {
@@ -28,8 +30,21 @@
 				},
 				success: res => {
 					console.log(res)
+					if(res.data.code == 200){
+						this.list = res.data.data
+					}else{
+							uni.showModal({
+								content: 'bbb',
+								showCancel: false
+							});
+					}
 				},
-				fail: () => {},
+				fail: () => {
+					uni.showModal({
+						content: 'aaaa',
+						showCancel: false
+					});
+				},
 				complete: () => {}
 			});
 			uni.request({
