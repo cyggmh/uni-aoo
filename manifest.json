@@ -73,12 +73,12 @@
     },
     "h5" : {
         "devServer" : {
-            "https" : true
+            "https" : false
         },
-		"proxy" : {
-			"/api":{
-				"changeOrigin" : true //是否跨域
-			}
-		}
+        "proxy" : {
+            "/api" : {
+                "changeOrigin" : true //是否跨域
+            }
+        }
     }
 }
